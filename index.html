@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  
+
+  <title>Ng-Filter by Category</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+   <script src="app.js"></script>
+  </head>
+  <body>
+  
+
+<div ng-app="appX">
+  <div ng-controller="ctrlX">
+    <label>Search:</label>
+    <input id='searchTerm' ng-model='searchTerm' />
+    <label>Filter:</label>
+    <select id='filterKey' ng-model="filterList" ng-options="x for x in keyList">
+      <option value=''>ALL</option>
+    </select>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th ng-repeat="x in keyList">{{x}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="x in dataSet | mycustomSearch:{term:searchTerm, type:filterList} | filter: searchTerm">
+            <td>{{x.firstname}}</td>
+            <td>{{x.lastname}}</td>
+            <td>{{x.age}}</td>
+            <td>{{x.sex}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+  </body>
+</html>
